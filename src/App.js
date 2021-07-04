@@ -20,6 +20,9 @@ class App extends Component {
       .then((users) => this.setState({ monsters: users }));
   }
 
+  // Arrow Function automatically binds off this
+  handleChange = (e) => this.setState({ searchField: e.target.value });
+
   render() {
     const { monsters, searchField } = this.state;
 
@@ -31,9 +34,7 @@ class App extends Component {
       <div className="App">
         <Searchbox
           placeholder="Search Monsters"
-          handleChange={(e) => {
-            this.setState({ searchField: e.target.value });
-          }}
+          handleChange={this.handleChange}
         />
         <CardList monster={filteredMonster} />
       </div>
